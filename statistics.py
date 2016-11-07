@@ -23,9 +23,9 @@ def yhat(eigenvectors, observations, nComp):
     return yhatList
 
 
-def corrVarPrinc(xArray, eig_vec, nComp):
-    xArray_T = np.transpose(xArray)
-    eig_vec_T = np.transpose(eig_vec)
+def corrVarPrinc(eigenvectors, observations, nComp):
+    xArray_T = np.transpose(observations[:-1])
+    eig_vec_T = np.transpose(eigenvectors)
     
     newXArray_T = []
     for obs in xArray_T:        
@@ -48,10 +48,10 @@ def corrVarPrinc(xArray, eig_vec, nComp):
     corrVarPrinc = corr[:-nComp, -nComp:]
     return corrVarPrinc
           
-def rSquared(eig_vec, variables, nComp):
-    yhatList = yhat(eig_vec, variables, 3)
+def rSquared(eigenvectors, observations, nComp):
+    yhatList = yhat(eigenvectors, observations, 3)
         
-    rsArray_T = np.asarray([variables[-1], yhatList])
+    rsArray_T = np.asarray([observations[-1], yhatList])
     ybar = np.mean(rsArray_T[0])
           
     SST = 0

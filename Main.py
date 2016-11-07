@@ -8,10 +8,10 @@ if __name__ == '__main__':
     filename = "variables11022016.xlsx"
       
     ## 1. Read excel file and convert to list to array
-    variables = excel.excelToArray(filename, "variables11022016") #[variables][observations]
-#     variables = excelToArray(filename, "Variables") 
-    xArray = variables[:-1]
-    yArray = variables[-1]
+    observations = excel.excelToArray(filename, "variables11022016") #[observations][censusTract]
+#     observations = excelToArray(filename, "Variables") 
+    xArray = observations[:-1]
+    yArray = observations[-1]
     
     ## 2. Computing the Covariance Matrix
     cov_mat = np.cov(xArray) #the last column is the dependent variable
@@ -23,11 +23,11 @@ if __name__ == '__main__':
 #     eig_val_cov, eig_vec_cov = np.linalg.eig(cov_mat)
     [eig_val_cov, eig_vec_cov] = eig.jacobi_eig(cov_mat,tol = 1.0e-9)
     
-    print eig_val_cov
-    print eig_vec_cov
+#     print eig_val_cov
+#     print eig_vec_cov
 
     ##4. Correlation table
-    corrTable = stat.corrVarPrinc(xArray, eig_vec_cov, 3)
+    corrTable = stat.corrVarPrinc(eig_vec_cov, observations, 3)
 #     print corrTable
 
 
@@ -40,7 +40,6 @@ if __name__ == '__main__':
 
     ##6. Computing R-squared value   
     #eig_vec_cov : eij where i = ith variable (i=1,2,...,p) / j = jth component (j=1,2,...,p)
-    #variables : xij, where i = ith variable (i=1,2,...,p) / j = jth observation (j=1,2,...,n)
-    rSqaured = stat.rSquared(eig_vec_cov, variables, 3)
-#     print rSqaured
+    #observations : xij, where i = ith variable (i=1,2,...,p) / j = jth observation (j=1,2,...,n)
+    rSqaured = stat.rSquared(eig_vec_cov, observations, 3)
  
