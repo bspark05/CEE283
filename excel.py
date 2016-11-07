@@ -3,7 +3,21 @@
 import xlrd
 import openpyxl
 from openpyxl import Workbook
+import numpy as np
 
+def excelToArray(filename, sheetname):
+    varExcel = excelRead(filename, sheetname)
+    varList = []
+    # first row is a field name
+    for row in varExcel[1:]:
+        rowList = []
+        for value in row:
+            rowList.append(float(value.value))
+        varList.append(rowList)
+    varArray = np.array(varList)
+    # transpose the array
+    varArrayTras = np.transpose(varArray)
+    return varArrayTras
 
 def excelRead(filepath, sheetname):
     workbook = xlrd.open_workbook(filepath)
