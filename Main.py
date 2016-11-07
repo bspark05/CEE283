@@ -1,8 +1,4 @@
-'''
-Created on Oct 8, 2016
 
-@author: Administrator
-'''
 import excel as excel
 import numpy as np
 import jacobi_eigenvalue as eig

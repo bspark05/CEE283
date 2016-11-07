@@ -1,8 +1,4 @@
-'''
-Created on Nov 6, 2016
 
-@author: Administrator
-'''
 import numpy as np
 
 def coefficient(eigenvectors, nComp):
