@@ -23,8 +23,8 @@ if __name__ == '__main__':
 #     eig_val_cov, eig_vec_cov = np.linalg.eig(cov_mat)
     [eig_val_cov, eig_vec_cov] = eig.jacobi_eig(cov_mat,tol = 1.0e-9)
     
-#     print eig_val_cov
-#     print eig_vec_cov
+    print np.round(eig_val_cov, 3)
+    print np.round(eig_vec_cov, 3)
 
     ##4. Correlation table
     corrTable = stat.corrVarPrinc(eig_vec_cov, observations, 3)
@@ -35,11 +35,12 @@ if __name__ == '__main__':
     #eig_vec_cov : eij where i = ith variable (i=1,2,...,p) / j = jth component (j=1,2,...,p)    
        
     coeffiList = stat.coefficient(eig_vec_cov, 3)
-#     print coeffiList
+    print np.round(coeffiList,3)
 
 
     ##6. Computing R-squared value   
     #eig_vec_cov : eij where i = ith variable (i=1,2,...,p) / j = jth component (j=1,2,...,p)
     #observations : xij, where i = ith variable (i=1,2,...,p) / j = jth observation (j=1,2,...,n)
     rSqaured = stat.rSquared(eig_vec_cov, observations, 3)
+    print rSqaured
  
